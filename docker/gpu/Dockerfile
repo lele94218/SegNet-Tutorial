@@ -1,5 +1,5 @@
 # from https://github.com/BVLC/caffe/blob/master/docker/standalone/gpu/Dockerfile
-FROM nvidia/cuda:7.5-cudnn5-devel-ubuntu14.04
+FROM nvidia/cuda:8.0-cudnn5-devel-ubuntu16.04
 MAINTAINER caffe-maint@googlegroups.com
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -28,9 +28,12 @@ ENV CAFFE_ROOT=/opt/caffe
 WORKDIR $CAFFE_ROOT
 
 # FIXME: clone a specific git tag and use ARG instead of ENV once DockerHub supports this.
-ENV CLONE_TAG="segnet-cleaned"
+ENV CLONE_TAG="master"
 
-RUN git clone -b ${CLONE_TAG} --depth 1 https://github.com/alexgkendall/caffe-segnet.git . && \
+RUN pip install --upgrade pip
+RUN pip install packaging
+RUN pip install appdirs
+RUN git clone -b ${CLONE_TAG} --depth 1 https://github.com/TimoSaemann/caffe-segnet-cudnn5.git . && \
     for req in $(cat python/requirements.txt) pydot; do pip install $req; done && \
     mkdir build && cd build && \
     cmake -DUSE_CUDNN=1 .. && \
