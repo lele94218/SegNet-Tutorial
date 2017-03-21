@@ -69,30 +69,34 @@ for i in range(0, args.iter):
 		b_gt[label==l] = label_colours[l,2]
 
 	rgb = np.zeros((ind.shape[0], ind.shape[1], 3))
-	rgb[:,:,0] = r/255.0
-	rgb[:,:,1] = g/255.0
-	rgb[:,:,2] = b/255.0
+	rgb[:,:,0] = r#/255.0
+	rgb[:,:,1] = g#/255.0
+	rgb[:,:,2] = b#/255.0
 	rgb_gt = np.zeros((ind.shape[0], ind.shape[1], 3))
-	rgb_gt[:,:,0] = r_gt/255.0
-	rgb_gt[:,:,1] = g_gt/255.0
-	rgb_gt[:,:,2] = b_gt/255.0
+	rgb_gt[:,:,0] = r_gt#/255.0
+	rgb_gt[:,:,1] = g_gt#/255.0
+	rgb_gt[:,:,2] = b_gt#/255.0
 
-	image = image/255.0
+	#image = image/255.0
 
 	image = np.transpose(image, (1,2,0))
 	output = np.transpose(output, (1,2,0))
 	image = image[:,:,(2,1,0)]
 
 
-	#scipy.misc.toimage(rgb, cmin=0.0, cmax=255).save(IMAGE_FILE+'_segnet.png')
+	scipy.misc.toimage(rgb, cmin=0.0, cmax=255).save('/SegNet/result/'+ str(i) + '_segnet_rgb.png')
+#	scipy.misc.toimage(rgb_gt, cmin=0.0, cmax=255).save('/SegNet/result/'+ str(i) + '_segnet_rgb_gt.png')
+	scipy.misc.toimage(image, cmin=0.0, cmax=255).save('/SegNet/result/'+ str(i) + '_segnet_image.png')
 
-	plt.figure()
-	plt.imshow(image,vmin=0, vmax=1)
-	plt.figure()
-	plt.imshow(rgb_gt,vmin=0, vmax=1)
-	plt.figure()
-	plt.imshow(rgb,vmin=0, vmax=1)
-	plt.show()
+
+
+	#plt.figure()
+	#plt.imshow(image,vmin=0, vmax=1)
+	#plt.figure()
+	#plt.imshow(rgb_gt,vmin=0, vmax=1)
+	#plt.figure()
+	#plt.imshow(rgb,vmin=0, vmax=1)
+	#plt.show()
 
 
 print 'Success!'
