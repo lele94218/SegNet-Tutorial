@@ -5,6 +5,17 @@ input_dim: 3
 input_dim: 360
 input_dim: 480
 layer {
+  name: "data"
+  type: "DenseImageData"
+  top: "data"
+  top: "label"
+  dense_image_data_param {
+    source: "/SegNet/CamVid/mtrain.txt"	# Change this to the absolute path to your data file
+    batch_size: 2   			# Change this number to a batch size that will fit on your GPU
+    shuffle: true
+  }
+}
+layer {
   bottom: "data"
   top: "conv1_1"
   name: "conv1_1"
