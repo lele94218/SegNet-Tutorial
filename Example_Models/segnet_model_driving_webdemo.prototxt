@@ -1,9 +1,9 @@
 name: "VGG_ILSVRC_16_layer"
-input: "data"
+#input: "data"
 input_dim: 1
 input_dim: 3
-input_dim: 360
 input_dim: 480
+input_dim: 640
 layer {
   name: "data"
   type: "DenseImageData"
@@ -837,8 +837,8 @@ layer {
   bottom: "pool5_mask"
   upsample_param {
     scale: 2
-    upsample_w: 30
-    upsample_h: 23
+    upsample_w: 40
+    upsample_h: 30
   }
 }
 layer {
@@ -1024,8 +1024,8 @@ layer {
   bottom: "pool4_mask"
   upsample_param {
     scale: 2
-    upsample_w: 60
-    upsample_h: 45
+    upsample_w: 80
+    upsample_h: 60
   }
 }
 layer {
