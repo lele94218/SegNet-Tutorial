@@ -1,3 +1,4 @@
+*.caffemodel
 *.solverstate
 result/*
 *DS_Store
